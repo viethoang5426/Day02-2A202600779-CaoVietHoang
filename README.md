@@ -1,2 +1,2 @@
-# Day02-2A202600779-CaoVi-tHo-ng
-DAY 2 
+
+DAY 2 - 2A202600779 - Cao Việt Hoàng

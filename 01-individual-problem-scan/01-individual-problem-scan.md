@@ -1,198 +1,104 @@
-# TÀI LIỆU PROBLEM STATEMENT - CÁC GIAI ĐOẠN PHÁT TRIỂN HỆ THỐNG AI
+# 01 — Individual Problem Scan
 
----
+## Scan rộng
 
-## PHASE 0 : KHỞI TẠO VÀ CHUẨN BỊ
-*(Giai đoạn này hiện tại chưa có nội dung chi tiết từ hệ thống)*
+Lan scan 10 problems từ nhiều góc nhìn khác nhau xoay quanh việc học viên bị quá tải thông tin.
 
----
+| # | Lăng kính | Problem quan sát được | Ai đang đau? | Dấu hiệu thật |
+|---|---|---|---|---|
+| 1 | Lặp lại | Gom thông báo từ Zalo, FB, Discord, Teams để làm Weekly Digest (Bản tin tuần) | Quản lý học viên, TA | Mất khoảng 120 phút mỗi chiều thứ Sáu |
+| 2 | Phân mảnh | Học viên lỡ deadline bài tập vì thông báo trôi quá nhanh trên Zalo/Discord | Học viên, Giảng viên | Tỉ lệ nộp bài muộn/quên bài chiếm 15-20% |
+| 3 | Tốn thời gian | Tìm kiếm và copy quy định (hoàn phí, bảo lưu) từ Web/Handbook PDF để trả lời Q&A | Quản lý học viên | Mất 10-15 phút lục lọi tài liệu cho mỗi tin nhắn hỏi |
+| 4 | Lặp lại | Học viên mới onboard không biết tìm tài liệu cũ ở đâu, liên tục hỏi lại câu cũ | Học viên mới, TA | 1 câu hỏi về "link record buổi 1" bị hỏi đi hỏi lại 5 lần/tuần |
+| 5 | Khó tra cứu | Giảng viên post tài liệu lên Teams, nhưng học viên quen dùng FB Group nên không thấy | Học viên | Thường xuyên nhắn tin: "Cô ơi em không thấy file bài tập" |
+| 6 | AI có thể tốt hơn | Lọc các câu hỏi học thuật từ Discord để gom thành bộ FAQ cho khóa sau | TA, Academic Team | Cứ hết khóa là thông tin trôi mất, không ai rảnh để ngồi copy từng dòng |
+| 7 | Tốn thời gian | Nhắc nhở từng học viên lỡ buổi học đọc lại recap trên các group khác nhau | TA | Mất 30 phút nhắn tin riêng cho từng người sau mỗi buổi |
+| 8 | Pain từ người khác | Ban đào tạo gửi policy mới qua email, nhưng học viên chỉ check Zalo nên bỏ lỡ | Học viên, Ban đào tạo | Sinh viên phàn nàn "em chưa được thông báo" khi có sự cố |
+| 9 | Chờ đợi | Học viên nhắn tin hỏi tìm link nộp bài lúc 10h tối, không ai trực | Học viên | Phải chờ đến 9h sáng hôm sau mới được phản hồi |
+| 10 | AI có thể tốt hơn | Tóm tắt các luồng tranh luận dài về kỹ thuật trên Discord để cho vào Newsletter | Quản lý học viên | Đọc hiểu và tóm tắt lại đoạn chat dài tốn 20-30 phút |
 
-## PHASE 1 : KHẢO SÁT VÀ XÁC ĐỊNH BÀI TOÁN CỐT LÕI
-Dưới đây là các vấn đề cốt lõi đã được khảo sát và ghi nhận trong quy trình hiện tại:
+Vì sao phần scan này mạnh:
+- Phản ánh đúng thực trạng "thừa kênh giao tiếp" của các cộng đồng học tập hiện nay (Zalo để chat nhanh, FB để chia sẻ, Discord/Teams để học thuật, Web để lưu trữ).
+- Xác định rõ nỗi đau đến từ cả hai phía: Học viên (bị ngợp, lỡ thông tin) và Nhân sự (mất thời gian gom nhặt, nhắc nhở).
+- Có metric thời gian và dấu hiệu rõ ràng.
 
-1. Chưa có cơ chế hiểu được trình độ, điểm mạnh của mỗi người khiến việc ghép đội (match team) chưa đồng nhất.
-2. Chưa thống nhất các thông tin, hướng dẫn thành một line cụ thể, tài liệu bị phân tán nhiều nơi.
-3. Lượng kiến thức có thể quá tải cho các bạn học viên không có nền tảng công nghệ (background tech).
-4. Có quá ít trợ giảng so với nhu cầu hỏi đáp của học viên.
-5. Quy trình điểm danh, nộp bài hoạt động chưa hiệu quả.
+## Top 3
 
----
+| Rank | Problem | Vì sao chọn | Điều còn chưa chắc |
+|---|---|---|---|
+| 1 | Tổng hợp Bản tin tuần (Weekly Digest) từ 5 kênh | Workflow quá rõ, tốn nhiều công sức gom nhặt văn bản thô, metric cải thiện dễ đo lường | Khả năng AI kết nối (API/Export) với các kênh như Zalo có dễ không |
+| 2 | Trả lời Q&A quy định từ Web/Handbook | Có pain thật, lặp đi lặp lại nhiều lần trong ngày | Rủi ro AI (Hallucination) bịa ra chính sách học phí, bảo lưu |
+| 3 | Gom câu hỏi kỹ thuật từ Discord thành FAQ | Tái sử dụng được kiến thức cho khóa sau, impact tốt | Phải biết cách đánh giá câu trả lời nào của học viên/TA trên Discord là đúng nhất |
 
-## PHASE 2 : ĐỊNH HƯỚNG GIẢI PHÁP AI (PROBLEM STATEMENT)
+## Problem Card #1 — Tổng hợp Weekly Digest cho học viên
 
-### 1. Vấn đề: Thiếu cơ sở đánh giá năng lực để ghép đội (Team Matching) đồng nhất
-* **Actor (Đối tượng ảnh hưởng):** Học viên và Ban tổ chức (BTC) / Quản lý chương trình.
-* **Workflow (Quy trình hiện tại):** Học viên cung cấp thông tin $
-ightarrow$ Tự tìm nhóm hoặc BTC xếp nhóm ngẫu nhiên $
-ightarrow$ Chốt danh sách.
-* **Bottleneck (Nút thắt):** Thiếu dữ liệu phân tích kỹ năng, điểm mạnh/yếu của từng cá nhân; quá trình ghép nhóm thủ công, cảm tính và mất thời gian.
-* **Impact (Tác động):** Chất lượng team không đồng đều, dễ xảy ra xung đột, hiệu suất làm việc nhóm kém, tỷ lệ rời nhóm cao.
-* **Success Metric (Chỉ số thành công):** Giảm 80% thời gian ghép nhóm; tăng tỷ lệ hài lòng về đồng đội; giảm số lượng yêu cầu đổi nhóm.
-* **Boundary (Ranh giới):** AI không bắt buộc/ép người dùng vào nhóm; quyền quyết định cuối cùng vẫn thuộc về học viên hoặc BTC.
-* **Điểm AI can thiệp (Decision entry):** Giai đoạn ngay sau khi học viên hoàn thành hồ sơ/bài test: AI phân tích profile và gợi ý các thành viên bù trừ kỹ năng cho nhau.
-* **Mức chọn (Decision level):** Rule / Workflow / Agent? $
-ightarrow$ **Workflow / Agent**: Hệ thống tự động phân tích và đưa ra danh sách đề xuất phù hợp nhất.
-* **Rủi ro & HITL (Decision safety):** AI gợi ý sai lệch do thông tin đầu vào không chuẩn $
-ightarrow$ Học viên có quyền từ chối gợi ý và tìm kiếm thủ công.
+**Problem 1 câu:**
+Mỗi chiều thứ Sáu, Quản lý học viên mất khoảng 120 phút đi gom nhặt thông báo, link bài tập, update từ 5 nguồn (Zalo, FB, Discord, Teams, Web) để viết bản tin tổng hợp (Weekly Digest) nhằm giúp học viên không bị lỡ thông tin.
 
----
-Draft current workflow
+**Actor:**
+Lan, Quản lý học viên (Student Success Coordinator) chịu trách nhiệm vận hành lớp và giao tiếp với học viên.
 
-CURRENT STATE - 115 phút
+**Thời điểm / bối cảnh:**
+Chiều thứ Sáu hằng tuần, chuẩn bị bản tin gửi học viên trước cuối tuần để họ có thời gian làm bài tập.
 
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-│ 1 Nộp form  │──>│ 2 Tải & lọc │──>│ 3 Đọc &     │──>│ 4 Ghép nhóm │
-│ data        │   │ file Excel  │   │ phân tích   │   │ thủ công    │
-│ ⏱ 15'       │   │ ⏱ 20'       │   │ ⏱ 45' 🔴    │   │ ⏱ 20'       │
-└─────────────┘   └─────────────┘   └─────────────┘   └─────────────┘
-                                                             │
-                                                             ▼
-                                      ┌─────────────┐   ┌─────────────┐
-                                      │ 6 Công bố   │<──│ 5 Review &  │
-                                      │ & email     │   │ chốt ds     │
-                                      │ ⏱ 5'        │   │ ⏱ 10'       │
-                                      └─────────────┘   └─────────────┘
+**Current workflow:**
+```text
+1. Lướt Zalo: Tìm và copy các tin nhắn đã ghim (nhắc lịch, sự kiện).
+2. Lướt FB Group: Lấy link các bài post chia sẻ tài liệu hay trong tuần.
+3. Check Discord/Teams: Gom link bài tập, thông báo từ Giảng viên.
+4. Check Website/Handbook: Xem có chính sách/cập nhật hệ thống nào mới không.
+5. Paste tất cả vào Google Docs (Raw text).
+6. Viết và cấu trúc lại Digest: Phân loại theo (1) Cần làm ngay, (2) Sự kiện sắp tới, (3) Tài liệu hữu ích. Lược bỏ văn phong chat mạng.
+7. Gửi email cho học viên & quăng link vào nhóm chat.
+```
 
-🔴 = Bottleneck (Phân tích hồ sơ và xếp nhóm thủ công tốn thời gian, cảm tính)
+**Bottleneck:**
+Bước 6 — Cấu trúc và viết lại nội dung từ các văn phong lộn xộn (chat cụt lủn trên Zalo, post dài trên FB, text kỹ thuật trên Discord) mất khoảng 60 phút và rất mệt mỏi.
 
+**Impact:**
+120 phút/tuần cho 1 lớp. Nếu Lan quản lý 4 lớp, mất trọn 1 ngày làm việc (8 tiếng) chỉ để làm việc "copy - dán - dịch lại". Nếu Lan không làm, học viên sẽ ngợp thông tin, lỡ deadline, dẫn đến rớt môn và phản hồi xấu.
 
-Draft future workflow
+**Success metric:**
+Giảm thời gian làm 1 bản Weekly Digest từ 120 phút xuống dưới 20 phút. Format bản tin mạch lạc hơn, giảm 50% tin nhắn hỏi "tuần này có bài tập gì không chị".
 
-FUTURE STATE - 32 phút
+**Non-AI alternative:**
+Quy định "Bàn tay sắt": Cấm mọi giao tiếp công việc trên Zalo/FB, ép 100% Giảng viên và Học viên dùng duy nhất 1 hệ thống LMS (Canvas/Moodle). Tuy nhiên, khó áp dụng vì thói quen dùng mạng xã hội của học viên Việt Nam quá lớn.
 
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-│ 1 Nộp form  │──>│ 2 AI phân   │──>│ 3 AI draft  │
-│ data        │   │ tích data   │   │ team list   │
-│ ⏱ 15'       │   │ ⏱ 2'        │   │ ⏱ 3'        │
-└─────────────┘   └─────────────┘   └─────────────┘
-                                           │
-                                           ▼
-                          ┌─────────────┐   ┌─────────────┐
-                          │ 4 User/BTC  │──>│ 5 Công bố   │
-                          │ review chốt │   │ & email     │
-                          │ ⏱ 10' 🟢    │   │ ⏱ 2'        │
-                          └─────────────┘   └─────────────┘
+**AI hypothesis:**
+AI tự động cấu trúc dữ liệu thô (được Lan export/copy từ các kênh) và chuyển sang văn phong bản tin (Digest) theo đúng template. Quản lý học viên chỉ cần duyệt và tinh chỉnh.
 
-🟢 = Human boundary
-Fallback: Nếu AI gợi ý không phù hợp -> Học viên tự tìm nhóm thủ công.
+**Quick gut:**
+Workflow.
 
+### Draft current workflow
 
---- 
+CURRENT STATE — 120 phút
 
-### 2. Vấn đề: Thông tin và hướng dẫn bị phân tán, thiếu đồng nhất
-* **Actor (Đối tượng ảnh hưởng):** Người dùng nội bộ / Học viên (Người cần tra cứu thông tin).
-* **Workflow (Quy trình hiện tại):** Phát sinh thắc mắc $
-ightarrow$ Tra cứu trên nhiều kênh (Discord, Zalo, Handbook, Facebook) $
-ightarrow$ Hỏi người hỗ trợ $
-ightarrow$ Nhận đáp án.
-* **Bottleneck (Nút thắt):** Không có nguồn thông tin tập trung, người dùng không biết tìm ở đâu, hỏi lặp lại nhiều câu hỏi cũ.
-* **Impact (Tác động):** Tốn thời gian tra cứu, quá tải cho bộ phận Support/Admin, rủi ro làm sai quy trình do đọc tài liệu cũ.
-* **Success Metric (Chỉ số thành công):** Giảm tỷ lệ câu hỏi lặp lại cho Support; rút ngắn thời gian trung bình để tìm thấy câu trả lời chính xác.
-* **Boundary (Ranh giới):** AI không tự sáng tạo ra quy trình/chính sách mới; chỉ được phép truy xuất từ nguồn dữ liệu đã được phê duyệt.
-* **Điểm AI can thiệp (Decision entry):** Cổng thông tin/Chat nội bộ: AI tiếp nhận câu hỏi, tổng hợp thông tin và trả lời ngay lập tức kèm link tài liệu gốc.
-* **Mức chọn (Decision level):** Rule / Workflow / Agent? $
-ightarrow$ **Agent (RAG)**: Trợ lý ảo truy xuất dữ liệu từ các nguồn đã được định dạng và trả lời tự động.
-* **Rủi ro & HITL (Decision safety):** AI trả lời sai ngữ cảnh hoặc bịa thông tin (Hallucination) $
-ightarrow$ Có nút chuyển tiếp (Escalate) câu hỏi cho nhân sự hỗ trợ con người xử lý.
+[1 Lướt lấy tin Zalo: 10']
+→ [2 Lấy link FB Group: 10']
+→ [3 Gom update Discord/Teams: 20']
+→ [4 Check web policy: 10']
+→ [5 Tổng hợp thô vào Docs: 5']
+→ [6 Cấu trúc & Viết lại thành Bản tin: 60']  <-- bottleneck
+→ [7 Gửi mail & post thông báo: 5']
+```
 
----
+### Draft future workflow
 
-Draft current workflow
+FUTURE STATE — 22 phút
 
-CURRENT STATE - 60 phút
+[1 Lan copy/paste raw data từ các kênh: 5']
+→ [2 AI phân loại thông tin (Deadline, Sự kiện, Tài liệu): 1']
+→ [3 AI viết lại văn phong Bản tin: 1']
+→ [4 Lan review + edit độ chính xác: 10']  <-- human boundary
+→ [5 Lan duyệt template và gửi: 5']
 
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-│ 1 Phát sinh │──>│ 2 Tìm Drive/│──>│ 3 Nhắn hỏi  │──>│ 4 Support   │
-│ câu hỏi     │   │ Wiki        │   │ Support     │   │ tra cứu     │
-│ ⏱ 2'        │   │ ⏱ 15'       │   │ ⏱ 5'        │   │ ⏱ 20' 🔴    │
-└─────────────┘   └─────────────┘   └─────────────┘   └─────────────┘
-                                                             │
-                                                             ▼
-                                      ┌─────────────┐   ┌─────────────┐
-                                      │ 6 User đọc  │<──│ 5 Text &    │
-                                      │ & áp dụng   │   │ gửi trả lời │
-                                      │ ⏱ 3'        │   │ ⏱ 15'       │
-                                      └─────────────┘   └─────────────┘
+Fallback: AI cấu trúc lộn xộn hoặc thiếu thông tin quan trọng → Lan tự chỉnh sửa thủ công trên Docs.
+```
 
-🔴 = Bottleneck (Phụ thuộc vào sức người, tra cứu rải rác mất thời gian)
+## Problem Cards #2 và #3 — tóm tắt
 
-
-Draft future workflow
-
-FUTURE STATE - 5 phút
-
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-│ 1 Gửi câu   │──>│ 2 AI query  │──>│ 3 AI trả lời│
-│ hỏi AI Bot  │   │ data (RAG)  │   │ + gắn link  │
-│ ⏱ 1'        │   │ ⏱ 1'        │   │ ⏱ 1'        │
-└─────────────┘   └─────────────┘   └─────────────┘
-                                           │
-                                           ▼
-                          ┌─────────────┐   ┌─────────────┐
-                          │ 4 User đọc  │──>│ 5 Áp dụng   │
-                          │ & đánh giá  │   │ làm việc    │
-                          │ ⏱ 2' 🟢     │   │ ⏱ 0'        │
-                          └─────────────┘   └─────────────┘
-
-🟢 = Human boundary
-Fallback: Trợ lý ảo AI không trả lời được -> Chuyển tiếp (Escalate) cho con người.
-
----
-
-### 3. Vấn đề: Quá tải kiến thức đối với người học không có nền tảng Tech
-* **Actor (Đối tượng ảnh hưởng):** Học viên thuộc khối Non-tech (Không có nền tảng công nghệ).
-* **Workflow (Quy trình hiện tại):** Đọc tài liệu / Nghe giảng $
-ightarrow$ Gặp thuật ngữ chuyên ngành $
-ightarrow$ Tự tìm hiểu hoặc hỏi chuyên gia $
-ightarrow$ Áp dụng.
-* **Bottleneck (Nút thắt):** Tài liệu dùng nhiều thuật ngữ kỹ thuật phức tạp; học viên mất nhiều thời gian để hiểu khái niệm cơ bản, dễ nản chí.
-* **Impact (Tác động):** Tỷ lệ hoàn thành thấp, tiến độ học tập chậm, giảng viên tốn nhiều thời gian giải thích lại khái niệm nền.
-* **Success Metric (Chỉ số thành công):** Giảm thời gian đọc hiểu tài liệu của nhóm Non-tech; tăng điểm bài kiểm tra kiến thức nền; tăng tỷ lệ hoàn thành khóa học.
-* **Boundary (Ranh giới):** AI không làm thay bài tập/dự án của học viên; chỉ đóng vai trò "gia sư" giải thích từ vựng và khái niệm.
-* **Điểm AI can thiệp (Decision entry):** Ngay khi học viên bôi đen/chọn một thuật ngữ khó trong tài liệu hoặc khi đặt câu hỏi yêu cầu giải thích đơn giản hóa.
-* **Mức chọn (Decision level):** Rule / Workflow / Agent? $
-ightarrow$ **Workflow / Agent**: AI tự động tạo tooltip giải nghĩa bằng ngôn ngữ đời thường hoặc hội thoại 1:1 giải thích ví dụ thực tế.
-* **Rủi ro & HITL (Decision safety):** AI giải thích quá bình dân làm sai lệch bản chất kỹ thuật $
-ightarrow$ Cho phép người dùng Vote (Up/Down) và Giảng viên (Coach) định kỳ rà soát các định nghĩa bị vote down.
-
----
-
-Draft current workflow
-
-CURRENT STATE - 45 phút
-
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-│ 1 Đọc/Nghe  │──>│ 2 Gặp thuật │──>│ 3 Tự search │──>│ 4 Lọc & hiểu│
-│ tài liệu    │   │ ngữ khó     │   │ Google/Wiki │   │ khái niệm   │
-│ ⏱ 10'       │   │ ⏱ 2'        │   │ ⏱ 15'       │   │ ⏱ 15' 🔴    │
-└─────────────┘   └─────────────┘   └─────────────┘   └─────────────┘
-                                                             │
-                                                             ▼
-                                      ┌─────────────┐
-                                      │ 5 Quay lại  │
-                                      │ học tiếp    │
-                                      │ ⏱ 3'        │
-                                      └─────────────┘
-
-🔴 = Bottleneck (Lượng kiến thức bị dồn ứ, tự chắt lọc thông tin dễ nản)
-
-
-Draft future workflow
-
-FUTURE STATE - 15 phút
-
-┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-│ 1 Đọc/Nghe  │──>│ 2 Bôi đen / │──>│ 3 AI dịch & │
-│ tài liệu    │   │ hỏi từ khó  │   │ tóm tắt gọn │
-│ ⏱ 10'       │   │ ⏱ 1'        │   │ ⏱ 2'        │
-└─────────────┘   └─────────────┘   └─────────────┘
-                                           │
-                                           ▼
-                          ┌─────────────┐   ┌─────────────┐
-                          │ 4 User đọc  │──>│ 5 Quay lại  │
-                          │ hiểu & Vote │   │ học tiếp    │
-                          │ ⏱ 2' 🟢     │   │ ⏱ 0'        │
-                          └─────────────┘   └─────────────┘
-
-🟢 = Human boundary
-Fallback: AI giải thích sai ngữ cảnh -> User downvote -> Giáo viên rà soát lại.
+| Card | Actor | Bottleneck | Metric | Quick gut | Vì sao chưa chọn làm #1 |
+|---|---|---|---|---|---|
+| Trả lời Q&A Handbook | Quản lý học viên | Lục tìm đúng trang PDF chứa chính sách học viên đang hỏi | 15 phút/câu → 2 phút/câu | RAG / Agent | Rủi ro AI bịa (hallucinate) chính sách tài chính rất nguy hiểm |
+| Gom FAQ từ Discord | TA (Trợ giảng) | Đọc toàn bộ lịch sử chat để lọc ra luồng kiến thức có giá trị | 3 tiếng/cuối khóa → 30 phút | Workflow | Cần đánh giá đúng/sai từ ngữ chuyên ngành, không làm thường xuyên bằng Weekly Digest |

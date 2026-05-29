@@ -1,4 +1,4 @@
-# 01 — Individual Problem Scan
+# Phase 1 — Individual Problem Scan
 
 ## Scan rộng
 
@@ -22,7 +22,7 @@ Vì sao phần scan này mạnh:
 - Xác định rõ nỗi đau đến từ cả hai phía: Học viên (bị ngợp, lỡ thông tin) và Nhân sự (mất thời gian gom nhặt, nhắc nhở).
 - Có metric thời gian và dấu hiệu rõ ràng.
 
-## Top 3
+# Phase 2 -  Top 3 Problem Card
 
 | Rank | Problem | Vì sao chọn | Điều còn chưa chắc |
 |---|---|---|---|
